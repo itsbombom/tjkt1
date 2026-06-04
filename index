@@ -1,0 +1,363 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pengumuman Nilai Koding dan Kecerdasan Artifisial - SMKN 2 Banjar</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#0f172a,#1e40af);
+    padding:20px;
+}
+
+.header{
+    text-align:center;
+    color:white;
+    margin-bottom:30px;
+}
+
+.logo{
+    width:160px;
+    margin-bottom:15px;
+}
+
+.header h1{
+    font-size:52px;
+    font-weight:800;
+}
+
+.header h2{
+    color:#facc15;
+    font-weight:500;
+}
+
+.header h3{
+    margin-top:10px;
+    font-weight:400;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+    margin-bottom:25px;
+}
+
+.input-group{
+    text-align:center;
+}
+
+.input-group p{
+    margin-bottom:15px;
+    font-size:20px;
+}
+
+input{
+    width:100%;
+    padding:18px;
+    border:2px solid #dbeafe;
+    border-radius:12px;
+    font-size:18px;
+}
+
+button{
+    margin-top:15px;
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(90deg,#2563eb,#1d4ed8);
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:.95;
+}
+
+.hasil{
+    display:none;
+    text-align:center;
+}
+
+.nama{
+    font-size:28px;
+    font-weight:bold;
+}
+
+.grade{
+    font-size:100px;
+    font-weight:900;
+    margin:10px 0;
+}
+
+.keterangan{
+    font-size:24px;
+}
+
+.A{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.B{
+    background:#dbeafe;
+    color:#1d4ed8;
+}
+
+.C{
+    background:#fef9c3;
+    color:#ca8a04;
+}
+
+.D{
+    background:#ffedd5;
+    color:#ea580c;
+}
+
+.E{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+.predikat{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+    gap:15px;
+    text-align:center;
+}
+
+.box{
+    border-radius:15px;
+    padding:20px;
+    border:2px solid #ddd;
+}
+
+.box h2{
+    font-size:48px;
+}
+
+.footer{
+    text-align:center;
+    color:#666;
+    margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <img src="logo-tkj.png" class="logo">
+    <h1>PENGUMUMAN NILAI</h1>
+    <h2>Koding dan Kecerdasan Artifisial</h2>
+    <h3>SMKN 2 Banjar</h3>
+</div>
+
+<div class="container">
+
+    <div class="card">
+        <div class="input-group">
+            <p>🔍 Masukkan nama lengkap sesuai daftar siswa</p>
+
+            <input
+                type="text"
+                id="namaInput"
+                placeholder="Contoh: ADAM SASTRA NEGARA">
+
+            <button onclick="cekNilai()">
+                LIHAT HASIL
+            </button>
+        </div>
+    </div>
+
+    <div class="card hasil" id="hasil">
+        <div id="namaHasil" class="nama"></div>
+        <div id="gradeHasil" class="grade"></div>
+        <div id="keterangan" class="keterangan"></div>
+    </div>
+
+    <div class="card">
+        <h2 style="text-align:center;margin-bottom:20px">
+            Keterangan Predikat
+        </h2>
+
+        <div class="predikat">
+
+            <div class="box A">
+                <h2>A</h2>
+                <p>90 - 100</p>
+                <br>
+                🏆 Sangat Baik
+            </div>
+
+            <div class="box B">
+                <h2>B</h2>
+                <p>80 - 89</p>
+                <br>
+                🌟 Baik
+            </div>
+
+            <div class="box C">
+                <h2>C</h2>
+                <p>70 - 79</p>
+                <br>
+                📚 Cukup
+            </div>
+
+            <div class="box D">
+                <h2>D</h2>
+                <p>60 - 69</p>
+                <br>
+                ⚠️ Perlu Bimbingan
+            </div>
+
+            <div class="box E">
+                <h2>E</h2>
+                <p>0 - 59</p>
+                <br>
+                🚨 Pendampingan Intensif
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2026 SMKN 2 Banjar - Teknik Komputer dan Jaringan
+    </div>
+
+</div>
+
+<script>
+
+const dataSiswa = {
+"ABDUL WAHID HASYIM ROMDHONI":"D",
+"ADAM SASTRA NEGARA":"A",
+"AFGAN SEPTIANA RAMADAN":"B",
+"AGISTA SALWA FADILAH":"A",
+"AHMAD NURUL FAUZI":"C",
+"AL FAKHRI FIRDAUS":"C",
+"ALMA MAHARANI":"C",
+"ALZIAN FEBRIAN NURDIANA":"D",
+"ANNISA MELANI PUTRI":"C",
+"AUFA DHIYAUL HAQ":"D",
+"BHAKTI NUR RACHMAN ZAELANI":"C",
+"CELSI SITI NURLAELA":"B",
+"DEVILYA ZANNETA FARADIA":"A",
+"DEWI HARIRI":"A",
+"DIDA FADIA HAYYA":"A",
+"DILA TRISNAWATI":"A",
+"DWI SETIA NUR ALYKA":"D",
+"FATIMATU JAHRA":"C",
+"FERDI RAMADHAN":"A",
+"FIA APRILIA":"C",
+"GILANG ADI NOVIAN":"D",
+"HASNA AULIYA AL KHUMAIRA":"A",
+"JENI KARTINI":"A",
+"MARLINA LORENSA":"B",
+"MELANI PUTRI SUDARYANTI":"D",
+"MELYA FRISCHA ANDINI":"C",
+"MIFTAH PARID NASAI":"A",
+"MUHAMAD AZHAR ZALALUDINSYAH":"C",
+"MUHAMAD RIZAL":"D",
+"NADIA KHAIRA NURUL ISLAMINA":"C",
+"NAYLA EVA SYAMROTUL FUADAH":"A",
+"NOVA FIRMAN MAULANA":"D",
+"NOVI SILVIYANI":"D",
+"RIANTIKA KHAIRUNISA":"D",
+"RIO JULVIKAR":"B",
+"RIZKI MAULANA":"B",
+"RIZKY MAULANA IBRAHIM":"D",
+"SILPI":"B",
+"SINDY ARTIKASARI":"D",
+"WILLY YANTO":"D"
+};
+
+function cekNilai(){
+
+    let nama = document
+        .getElementById("namaInput")
+        .value
+        .toUpperCase()
+        .trim();
+
+    let grade = dataSiswa[nama];
+
+    if(!grade){
+        alert("Nama tidak ditemukan.");
+        return;
+    }
+
+    let pesan = "";
+    let ikon = "";
+
+    switch(grade){
+
+        case "A":
+            ikon = "🏆";
+            pesan = "Sangat Baik";
+            break;
+
+        case "B":
+            ikon = "🌟";
+            pesan = "Baik";
+            break;
+
+        case "C":
+            ikon = "📚";
+            pesan = "Cukup";
+            break;
+
+        case "D":
+            ikon = "⚠️";
+            pesan = "Perlu Bimbingan";
+            break;
+
+        case "E":
+            ikon = "🚨";
+            pesan = "Pendampingan Intensif";
+            break;
+    }
+
+    let hasil = document.getElementById("hasil");
+
+    hasil.style.display = "block";
+    hasil.className = "card hasil " + grade;
+
+    document.getElementById("namaHasil").innerHTML = nama;
+    document.getElementById("gradeHasil").innerHTML = grade;
+    document.getElementById("keterangan").innerHTML =
+        ikon + " " + pesan;
+}
+
+document.getElementById("namaInput")
+.addEventListener("keypress",function(e){
+    if(e.key==="Enter"){
+        cekNilai();
+    }
+});
+
+</script>
+
+</body>
+</html>
+```
+
